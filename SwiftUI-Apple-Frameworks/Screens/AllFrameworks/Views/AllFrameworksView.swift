@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  AllFrameworksView.swift
 //  SwiftUI-Apple-Frameworks
 //
 //  Created by Bakhrom Usmanov on 29/01/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct AllFrameworksView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +20,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    AllFrameworksView()
 }
