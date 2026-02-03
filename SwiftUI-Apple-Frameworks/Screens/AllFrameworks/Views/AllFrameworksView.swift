@@ -8,17 +8,56 @@
 import SwiftUI
 
 struct AllFrameworksView: View {
+    private var viewModel: AllFrameworksViewModel
+    private var sampleItem = MockData.sampleFramework
+    
+    init(viewModel: AllFrameworksViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            backgroundView
+                .ignoresSafeArea()
+            HStack {
+                ForEach(viewModel.items) {
+                    FrameworkItemView(
+                        name: $0.name,
+                        imageName: $0.imageName
+                    )
+                }
+            }
         }
-        .padding()
+    }
+    
+    var backgroundView: some View {
+        Color(.black)
+    }
+}
+
+struct FrameworkItemView: View {
+    let name: String
+    let imageName: String
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 120, height: 120)
+            Text(name)
+                .scaledToFit()
+                .minimumScaleFactor(0.8)
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(.white)
+        }
     }
 }
 
 #Preview {
-    AllFrameworksView()
+    AllFrameworksView(
+        viewModel: .init(
+            items: MockData.frameworks
+        )
+    )
 }
